@@ -1,11 +1,17 @@
-package com.publish.shahar91.testingstuff.miwok;
+package com.publish.shahar91.testingstuff.miwokTabs.miwok;
 
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.ListFragment;
+import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -13,9 +19,10 @@ import com.publish.shahar91.testingstuff.R;
 
 import java.util.ArrayList;
 
-public class NumbersActivity extends AppCompatActivity {
+public class NumbersFragment extends ListFragment {
     private MediaPlayer mediaPlayer;
     private AudioManager audioManager;
+    private ArrayList<Word> words;
     private AudioManager.OnAudioFocusChangeListener focusChangeListener =
             new AudioManager.OnAudioFocusChangeListener() {
                 @Override
@@ -38,16 +45,37 @@ public class NumbersActivity extends AppCompatActivity {
         }
     };
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.word_list_tabs, container, false);
+
+        return rootView;
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        int result = audioManager.requestAudioFocus(focusChangeListener,
+                AudioManager.STREAM_MUSIC,
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+
+        releaseMediaPlayer();
+
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+            mediaPlayer = MediaPlayer.create(getActivity(), words.get(position).getSoundResourceId());
+            mediaPlayer.start();
+
+            mediaPlayer.setOnCompletionListener(completionListener);
+        }
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
-        audioManager = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
-
-        final ArrayList<Word> words = new ArrayList<>();
+        words = new ArrayList<>();
         words.add(new Word("one", "lutti", R.drawable.number_one, R.raw.number_one));
         words.add(new Word("two", "otiiko", R.drawable.number_two, R.raw.number_two));
         words.add(new Word("three", "tolookosu", R.drawable.number_three, R.raw.number_three));
@@ -59,44 +87,11 @@ public class NumbersActivity extends AppCompatActivity {
         words.add(new Word("nine", "wo'e", R.drawable.number_nine, R.raw.number_nine));
         words.add(new Word("ten", "na'aacha", R.drawable.number_ten, R.raw.number_ten));
 
-//        int count = 0;
-//        while (count < 10){
-//            TextView wordView = new TextView(this);
-//            wordView.setText(words.get(count));
-//            rootView.addView(wordView);
-//            count++;
-//        }
+        WordAdapter adapter = new WordAdapter(getActivity(), words, R.color.category_numbers);
 
-//        for (int index = 0; index < words.size(); index++) {
-//            Log.v("NumbersFragment", "Index: " +
-//                    index + "Value: " + words.get(index));
-//        }
-
-        WordAdapter adapter = new WordAdapter(this, words, R.color.category_numbers);
-        ListView listView = (ListView) findViewById(R.id.list);
-
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-//                Word word = words.get(position);
-
-                int result = audioManager.requestAudioFocus(focusChangeListener,
-                        AudioManager.STREAM_MUSIC,
-                        AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
-
-                releaseMediaPlayer();
+        setListAdapter(adapter);
 
 
-                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    mediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getSoundResourceId());
-                    mediaPlayer.start();
-
-                    mediaPlayer.setOnCompletionListener(completionListener);
-                }
-            }
-        });
     }
 
     /**
@@ -119,7 +114,7 @@ public class NumbersActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }

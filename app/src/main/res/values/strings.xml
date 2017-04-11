@@ -29,6 +29,9 @@
 
     <!-- Category name for the vocabulary words for family members [CHAR LIMIT=20] -->
     <string name="category_family">Family Members</string>
+    <string name="title_activity_miwok_tabs">MiwokTabs</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
 
 </resources>

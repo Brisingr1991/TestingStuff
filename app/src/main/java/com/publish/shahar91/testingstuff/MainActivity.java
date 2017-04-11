@@ -9,13 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.publish.shahar91.testingstuff.miwok.Miwok;
+import com.publish.shahar91.testingstuff.miwokTabs.miwok.MiwokTabs;
 
 public class MainActivity extends AppCompatActivity {
     Intent openAct;
     ListView listVw;
     String[] activities = {"Just Java (Android Tutorial - Udacity)",
             "Court Counter (Android Tutorial - Udacity)", "Miwok (Android Tutorial - Udacity)",
-            "MusicPlayer (Testing MediaPlayer object)"};
+            "MusicPlayer (Testing MediaPlayer object)", "miwokTabs"};
 
 
     @Override
@@ -56,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 openAct = new Intent(MainActivity.this, MusicPlayer.class);
                 startActivity(openAct);
                 break;
+            case 4:
+                openAct = new Intent(MainActivity.this, MiwokTabs.class);
+                startActivity(openAct);
+                break;
+
         }
     }
 }

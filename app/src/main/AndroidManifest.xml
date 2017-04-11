@@ -34,7 +34,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.MainActivity" />
         </activity>
-
         <activity
             android:name=".miwok.Miwok"
             android:label="Miwok"
@@ -44,7 +43,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.MainActivity" />
         </activity>
-
         <activity
             android:name=".miwok.NumbersActivity"
             android:label="@string/category_numbers"
@@ -54,7 +52,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
         </activity>
-
         <activity
             android:name=".miwok.PhrasesActivity"
             android:label="@string/category_phrases"
@@ -64,7 +61,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
         </activity>
-
         <activity
             android:name=".miwok.FamilyActivity"
             android:label="@string/category_family"
@@ -74,7 +70,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
         </activity>
-
         <activity
             android:name=".miwok.ColorsActivity"
             android:label="@string/category_colors"
@@ -84,11 +79,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
         </activity>
-
         <activity
             android:name=".MusicPlayer"
             android:label="Music Player"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".miwokTabs.miwok.MiwokTabs"
+            android:label="MiwokTabs"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Miwok">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+
+
     </application>
 
 </manifest>
