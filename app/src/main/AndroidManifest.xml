@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.publish.shahar91.testingstuff">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".JustJava"
+            android:label="Just Java"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/JustJAva">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+        >
+        <activity
+            android:name=".CourtCounter"
+            android:label="Court Counter"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Court">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".miwok.Miwok"
+            android:label="Miwok"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Miwok">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".miwok.NumbersActivity"
+            android:label="@string/category_numbers"
+            android:parentActivityName=".miwok.Miwok"
+            android:theme="@style/Miwok">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
+        </activity>
+
+        <activity
+            android:name=".miwok.PhrasesActivity"
+            android:label="@string/category_phrases"
+            android:parentActivityName=".miwok.Miwok"
+            android:theme="@style/Miwok">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
+        </activity>
+
+        <activity
+            android:name=".miwok.FamilyActivity"
+            android:label="@string/category_family"
+            android:parentActivityName=".miwok.Miwok"
+            android:theme="@style/Miwok">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
+        </activity>
+
+        <activity
+            android:name=".miwok.ColorsActivity"
+            android:label="@string/category_colors"
+            android:parentActivityName=".miwok.Miwok"
+            android:theme="@style/Miwok">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.miwok.Miwok" />
+        </activity>
+
+        <activity
+            android:name=".MusicPlayer"
+            android:label="Music Player"
+            android:parentActivityName=".MainActivity" />
+    </application>
+
+</manifest>
