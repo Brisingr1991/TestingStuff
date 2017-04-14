@@ -8,15 +8,22 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.publish.shahar91.testingstuff.didyoufeelit.DidYouFeelIt;
 import com.publish.shahar91.testingstuff.miwok.Miwok;
 import com.publish.shahar91.testingstuff.miwokTabs.miwok.MiwokTabs;
+import com.publish.shahar91.testingstuff.petsApp.CatalogActivity;
+import com.publish.shahar91.testingstuff.quake.EarthquakeActivity;
+import com.publish.shahar91.testingstuff.soonami.Soonami;
 
 public class MainActivity extends AppCompatActivity {
     Intent openAct;
     ListView listVw;
     String[] activities = {"Just Java (Android Tutorial - Udacity)",
             "Court Counter (Android Tutorial - Udacity)", "Miwok (Android Tutorial - Udacity)",
-            "MusicPlayer (Testing MediaPlayer object)", "miwokTabs"};
+            "MusicPlayer (Testing MediaPlayer object)", "miwokTabs",
+            "Quake Report (Android Tutorial - Udacity)",
+            "Soonami - Test app", "Did you feel it - Test app",
+            "Pets (Android Tutorial - Udacity)"};
 
 
     @Override
@@ -59,6 +66,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 4:
                 openAct = new Intent(MainActivity.this, MiwokTabs.class);
+                startActivity(openAct);
+                break;
+            case 5:
+                openAct = new Intent(MainActivity.this, EarthquakeActivity.class);
+                startActivity(openAct);
+                break;
+            case 6:
+                openAct = new Intent(MainActivity.this, Soonami.class);
+                startActivity(openAct);
+                break;
+            case 7:
+                openAct = new Intent(MainActivity.this, DidYouFeelIt.class);
+                startActivity(openAct);
+                break;
+            case 8:
+                openAct = new Intent(MainActivity.this, CatalogActivity.class);
                 startActivity(openAct);
                 break;
 

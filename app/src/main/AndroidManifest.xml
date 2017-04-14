@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.publish.shahar91.testingstuff">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -91,6 +94,60 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+        <activity
+            android:name=".quake.EarthquakeActivity"
+            android:label="Earthquake"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Quake">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+        <activity
+            android:name=".soonami.Soonami"
+            android:label="Soonami"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+        <activity
+            android:name=".didyoufeelit.DidYouFeelIt"
+            android:label="Did you feel it"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/FeelIt">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.publish.shahar91.testingstuff.MainActivity" />
+        </activity>
+        <activity
+            android:name=".quake.SettingActivity"
+            android:label="@string/settings_title"
+            android:parentActivityName=".quake.EarthquakeActivity"
+            android:theme="@style/Quake">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".quake.EarthquakeActivity" />
+        </activity>
+        <activity
+            android:name=".petsApp.CatalogActivity"
+            android:label="Pets App"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/Pets">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".petsApp.EditorActivity"
+            android:label="@string/editor_activity_title_new_pet"
+            android:parentActivityName=".petsApp.CatalogActivity"
+            android:theme="@style/EditorTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".petsApp.CatalogActivity" />
         </activity>
 
 

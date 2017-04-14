@@ -1,7 +1,6 @@
 package com.publish.shahar91.testingstuff.miwok;
 
 import android.app.Activity;
-import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.publish.shahar91.testingstuff.R;
-import com.publish.shahar91.testingstuff.miwok.Word;
 
 import java.util.ArrayList;
 
@@ -26,7 +24,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
 
     @NonNull
     @Override
-    public View getView(int position, View listItemView, ViewGroup parent) {
+    public View getView(int position, View listItemView,@NonNull ViewGroup parent) {
         // Check if the existing view is being reused, otherwise inflate the view
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext())

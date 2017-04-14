@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MusicPlayer extends AppCompatActivity {
 
     private Button playBtn, pauseBtn;
@@ -51,6 +55,22 @@ public class MusicPlayer extends AppCompatActivity {
                 mediaPlayer.pause();
             }
         });
+
+
+        String candyJson = "{\"candies\":[{\"name\":\"Jelly Beans\",\"count\":10}]}";
+
+        try {
+            JSONObject root = new JSONObject(candyJson);
+            JSONArray candiesArray = root.getJSONArray("candies");
+
+            JSONObject firstCandy = candiesArray.getJSONObject(0);
+
+            Toast.makeText(this, firstCandy.getString("name") + " " + firstCandy.getInt("count"), Toast.LENGTH_SHORT).show();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
     }
 }
