@@ -17,7 +17,10 @@ package com.publish.shahar91.testingstuff.petsApp;
  * limitations under the License.
  */
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -28,13 +31,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.publish.shahar91.testingstuff.R;
+import com.publish.shahar91.testingstuff.petsApp.data.PetContract.PetEntry;
+import com.publish.shahar91.testingstuff.petsApp.data.PetDbHelper;
 
 /**
  * Allows user to create a new pet or edit an existing one.
  */
 public class EditorActivity extends AppCompatActivity {
+    private PetDbHelper mDbHelper;
 
     /**
      * EditText field to enter the pet's name
@@ -73,6 +80,8 @@ public class EditorActivity extends AppCompatActivity {
         mWeightEditText = (EditText) findViewById(R.id.edit_pet_weight);
         mGenderSpinner = (Spinner) findViewById(R.id.spinner_gender);
 
+        mDbHelper = new PetDbHelper(this);
+
         setupSpinner();
     }
 
@@ -98,11 +107,11 @@ public class EditorActivity extends AppCompatActivity {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
                     if (selection.equals(getString(R.string.gender_male))) {
-                        mGender = 1; // Male
+                        mGender = PetEntry.GENDER_MALE; // Male
                     } else if (selection.equals(getString(R.string.gender_female))) {
-                        mGender = 2; // Female
+                        mGender = PetEntry.GENDER_FEMALE; // Female
                     } else {
-                        mGender = 0; // Unknown
+                        mGender = PetEntry.GENDER_UNKNOWN; // Unknown
                     }
                 }
             }
@@ -129,7 +138,9 @@ public class EditorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
-                // Do nothing for now
+                insertPet();
+                // Exit activity
+                finish();
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
@@ -142,5 +153,24 @@ public class EditorActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void insertPet() {
+        // Create and/or open a database to read from it
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(PetEntry.COLUMN_NAME, mNameEditText.getText().toString().trim());
+        values.put(PetEntry.COLUMN_BREED, mBreedEditText.getText().toString().trim());
+        values.put(PetEntry.COLUMN_GENDER, mGender);
+        values.put(PetEntry.COLUMN_WEIGHT, Integer.parseInt(mWeightEditText.getText().toString()));
+
+        long newRowId = db.insert(PetEntry.TABLE_NAME, null, values);
+
+        if (newRowId == -1) {
+            Snackbar.make(findViewById(android.R.id.content), "Error adding new pet", Snackbar.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "New pet has been added " + newRowId, Toast.LENGTH_SHORT).show();
+        }
     }
 }

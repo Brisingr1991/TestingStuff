@@ -150,6 +150,11 @@
                 android:value=".petsApp.CatalogActivity" />
         </activity>
 
+        <provider
+            android:name=".petsApp.data.PetProvider"
+            android:authorities="com.publish.shahar91.testingstuff"
+            android:exported="false" />
+
 
     </application>
 
