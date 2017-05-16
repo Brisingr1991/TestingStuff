@@ -55,10 +55,7 @@ public final class QueryUtils {
         }
 
         // Extract relevant fields from the JSON response and create an {@link Event} object
-        List<Earthquake> earthquake = extractEarthquakes(jsonResponse);
-
-        // Return the {@link Event}
-        return earthquake;
+        return extractEarthquakes(jsonResponse);
     }
 
     /**

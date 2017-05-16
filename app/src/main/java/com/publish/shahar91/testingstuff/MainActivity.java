@@ -9,11 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.publish.shahar91.testingstuff.didyoufeelit.DidYouFeelIt;
+import com.publish.shahar91.testingstuff.githubRepo.RepoMainActivity;
 import com.publish.shahar91.testingstuff.miwok.Miwok;
 import com.publish.shahar91.testingstuff.miwokTabs.miwok.MiwokTabs;
 import com.publish.shahar91.testingstuff.petsApp.CatalogActivity;
 import com.publish.shahar91.testingstuff.quake.EarthquakeActivity;
+import com.publish.shahar91.testingstuff.recyclerView.RecyclerMainActivity;
 import com.publish.shahar91.testingstuff.soonami.Soonami;
+import com.publish.shahar91.testingstuff.sunshine.SunMainActivity;
+import com.publish.shahar91.testingstuff.toys.ToyMainActivity;
 
 public class MainActivity extends AppCompatActivity {
     Intent openAct;
@@ -23,13 +27,17 @@ public class MainActivity extends AppCompatActivity {
             "MusicPlayer (Testing MediaPlayer object)", "miwokTabs",
             "Quake Report (Android Tutorial - Udacity)",
             "Soonami - Test app", "Did you feel it - Test app",
-            "Pets (Android Tutorial - Udacity)"};
+            "Pets (Android Tutorial - Udacity)",
+            "Sunshine (Android Tutorial - Udacity)",
+            "ToyBox (Android Tutorial - Udacity)",
+            "Github Repo Search (Android Tutorial - Udacity)",
+            "RecyclerViews (Android Tutorial - Udacity)"};
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.toy_main_list);
         listVw = (ListView) findViewById(R.id.listLv);
 
         listVw.setAdapter(new ArrayAdapter<String>(this,
@@ -82,6 +90,22 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 8:
                 openAct = new Intent(MainActivity.this, CatalogActivity.class);
+                startActivity(openAct);
+                break;
+            case 9:
+                openAct = new Intent(MainActivity.this, SunMainActivity.class);
+                startActivity(openAct);
+                break;
+            case 10:
+                openAct = new Intent(MainActivity.this, ToyMainActivity.class);
+                startActivity(openAct);
+                break;
+            case 11:
+                openAct = new Intent(MainActivity.this, RepoMainActivity.class);
+                startActivity(openAct);
+                break;
+            case 12:
+                openAct = new Intent(MainActivity.this, RecyclerMainActivity.class);
                 startActivity(openAct);
                 break;
 
