@@ -85,7 +85,6 @@ public class SunMainActivity extends AppCompatActivity {
     }
 
     public class SunQueryTask extends AsyncTask<String, Void, String[]> {
-
         @Override
         protected void onPreExecute() {
             sun_progressBar.setVisibility(View.VISIBLE);
