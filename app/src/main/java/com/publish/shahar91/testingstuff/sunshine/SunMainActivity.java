@@ -4,6 +4,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.publish.shahar91.testingstuff.R;
 import com.publish.shahar91.testingstuff.sunshine.data.SunshinePreferences;
+import com.publish.shahar91.testingstuff.sunshine.utilities.ForecastAdapter;
 import com.publish.shahar91.testingstuff.sunshine.utilities.NetworkUtils;
 import com.publish.shahar91.testingstuff.sunshine.utilities.OpenWeatherJsonUtils;
 
@@ -21,30 +24,40 @@ import java.net.URL;
 
 public class SunMainActivity extends AppCompatActivity {
 
-    TextView weatherTv;
-    TextView sun_errorTv;
-    ProgressBar sun_progressBar;
+    private TextView sun_errorTv;
+    private ProgressBar sun_progressBar;
+    private RecyclerView mRecyclerView;
+    private ForecastAdapter mForecastAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sun_forecast_activity);
 
-        weatherTv = (TextView) findViewById(R.id.weather_data);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_forecast);
         sun_errorTv = (TextView) findViewById(R.id.sun_errorTv);
         sun_progressBar = (ProgressBar) findViewById(R.id.sun_progressBar);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setHasFixedSize(true);
+
+        mForecastAdapter = new ForecastAdapter();
+
+        mRecyclerView.setAdapter(mForecastAdapter);
 
         LoadWeatherData();
     }
 
     private void showWeatherDataView() {
         sun_errorTv.setVisibility(View.INVISIBLE);
-        weatherTv.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void showErrorMessage() {
         sun_errorTv.setVisibility(View.VISIBLE);
-        weatherTv.setVisibility(View.INVISIBLE);
+        mRecyclerView.setVisibility(View.INVISIBLE);
 
     }
 
@@ -58,7 +71,7 @@ public class SunMainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                weatherTv.setText("");
+                mForecastAdapter.setWeatherData(null);
                 LoadWeatherData();
                 return true;
         }
@@ -109,9 +122,8 @@ public class SunMainActivity extends AppCompatActivity {
                  * the "\n\n\n" after the String is to give visual separation between each String in the
                  * TextView. Later, we'll learn about a better way to display lists of data.
                  */
-                for (String weatherString : weatherData) {
-                    weatherTv.append((weatherString) + "\n\n\n");
-                }
+                mForecastAdapter.setWeatherData(weatherData);
+
             } else {
                 showErrorMessage();
             }
