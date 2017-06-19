@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.publish.shahar91.testingstuff.R;
 import com.publish.shahar91.testingstuff.sunshine.data.SunshinePreferences;
@@ -22,7 +23,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.URL;
 
-public class SunMainActivity extends AppCompatActivity {
+public class SunMainActivity extends AppCompatActivity implements ForecastAdapter.ForecastAdapterOnClickHandler {
 
     private TextView sun_errorTv;
     private ProgressBar sun_progressBar;
@@ -43,7 +44,7 @@ public class SunMainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
-        mForecastAdapter = new ForecastAdapter();
+        mForecastAdapter = new ForecastAdapter(this);
 
         mRecyclerView.setAdapter(mForecastAdapter);
 
@@ -82,6 +83,11 @@ public class SunMainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.forecast, menu);
         return true;
+    }
+
+    @Override
+    public void onClick(String weatherForDay) {
+        Toast.makeText(this, weatherForDay, Toast.LENGTH_SHORT).show();
     }
 
     public class SunQueryTask extends AsyncTask<String, Void, String[]> {

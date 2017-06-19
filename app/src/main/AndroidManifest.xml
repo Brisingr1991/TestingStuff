@@ -11,7 +11,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -193,6 +192,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".newActivity.NewActivityMain"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".newActivity.ChildActivity"
+            android:parentActivityName=".newActivity.NewActivityMain">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".newActivity.NewActivityMain" />
+        </activity>
+
+
     </application>
 
 </manifest>

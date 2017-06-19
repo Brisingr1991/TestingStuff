@@ -14,6 +14,7 @@ import com.publish.shahar91.testingstuff.didyoufeelit.DidYouFeelIt;
 import com.publish.shahar91.testingstuff.githubRepo.RepoMainActivity;
 import com.publish.shahar91.testingstuff.miwok.Miwok;
 import com.publish.shahar91.testingstuff.miwokTabs.miwok.MiwokTabs;
+import com.publish.shahar91.testingstuff.newActivity.NewActivityMain;
 import com.publish.shahar91.testingstuff.petsApp.CatalogActivity;
 import com.publish.shahar91.testingstuff.quake.EarthquakeActivity;
 import com.publish.shahar91.testingstuff.recyclerView.RecyclerMainActivity;
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             "Sunshine (Android Tutorial - Udacity)",
             "ToyBox (Android Tutorial - Udacity)",
             "Github Repo Search (Android Tutorial - Udacity)",
-            "RecyclerViews (Android Tutorial - Udacity)"};
+            "RecyclerViews (Android Tutorial - Udacity)",
+            "NewActivityMain (Android Tutorial - Udacity)"};
 
 
     @Override
@@ -125,6 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 12:
                 openAct = new Intent(MainActivity.this, RecyclerMainActivity.class);
+                startActivity(openAct);
+                break;
+            case 13:
+                openAct = new Intent(MainActivity.this, NewActivityMain.class);
                 startActivity(openAct);
                 break;
 
