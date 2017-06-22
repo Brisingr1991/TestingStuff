@@ -5,9 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 
-/**
- * Created by Gebruiker on 19/06/2017.
- */
 
 public class Account extends AppCompatActivity {
     @Override
