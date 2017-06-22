@@ -93,6 +93,7 @@ public class MainLifecycle extends AppCompatActivity {
         super.onResume();
         logAndAppend(ON_RESUME);
 
+        
     }
 
     @Override
