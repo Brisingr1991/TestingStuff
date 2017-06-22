@@ -51,7 +51,6 @@ public class MainLifecycle extends AppCompatActivity {
 
         logAndAppend(ON_CREATE);
 
-
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey(LIFECYCLE_CALLBACKS_TEXT_KEY)) {
                 logAndAppend(savedInstanceState.getString(LIFECYCLE_CALLBACKS_TEXT_KEY));
