@@ -56,7 +56,6 @@ public class MainLifecycle extends AppCompatActivity {
                 logAndAppend(savedInstanceState.getString(LIFECYCLE_CALLBACKS_TEXT_KEY));
             }
         }
-
     }
 
     @Override
@@ -70,7 +69,6 @@ public class MainLifecycle extends AppCompatActivity {
         super.onStop();
         mLifecycleCallbacks.add(0, ON_STOP);
         logAndAppend(ON_STOP);
-
     }
 
     @Override
@@ -78,29 +76,24 @@ public class MainLifecycle extends AppCompatActivity {
         super.onDestroy();
         mLifecycleCallbacks.add(0, ON_DESTROY);
         logAndAppend(ON_DESTROY);
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         logAndAppend(ON_PAUSE);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         logAndAppend(ON_RESUME);
-
-        
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         logAndAppend(ON_RESTART);
-
     }
 
     private void logAndAppend(String lifecycleEvent) {
