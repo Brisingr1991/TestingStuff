@@ -4,7 +4,14 @@
 
     <item
         android:id="@+id/action_refresh"
+        android:orderInCategory="1"
         android:title="@string/menu_refresh"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_map"
+        android:orderInCategory="2"
+        android:title="Map Location"
+        app:showAsAction="never" />
 
 </menu>

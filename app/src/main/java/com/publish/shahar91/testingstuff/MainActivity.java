@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.publish.shahar91.testingstuff.didyoufeelit.DidYouFeelIt;
 import com.publish.shahar91.testingstuff.githubRepo.RepoMainActivity;
+import com.publish.shahar91.testingstuff.intents.MainIntentActivity;
+import com.publish.shahar91.testingstuff.lifecycles.MainLifecycle;
 import com.publish.shahar91.testingstuff.miwok.Miwok;
 import com.publish.shahar91.testingstuff.miwokTabs.miwok.MiwokTabs;
 import com.publish.shahar91.testingstuff.newActivity.NewActivityMain;
@@ -35,7 +38,16 @@ public class MainActivity extends AppCompatActivity {
             "ToyBox (Android Tutorial - Udacity)",
             "Github Repo Search (Android Tutorial - Udacity)",
             "RecyclerViews (Android Tutorial - Udacity)",
-            "NewActivityMain (Android Tutorial - Udacity)"};
+            "NewActivityMain (Android Tutorial - Udacity)",
+            "Intents (Explicit, Implicit) (Android Tutorial - Udacity)",
+            "Lifecycles (Android Tutorial - Udacity)"};
+
+    Class[] mClassess = {JustJava.class, CourtCounter.class, Miwok.class,
+            MusicPlayer.class, MiwokTabs.class, EarthquakeActivity.class,
+            Soonami.class, DidYouFeelIt.class, CatalogActivity.class,
+            SunMainActivity.class, ToyMainActivity.class,
+            RepoMainActivity.class, RecyclerMainActivity.class,
+            NewActivityMain.class, MainIntentActivity.class, MainLifecycle.class};
 
 
     @Override
@@ -50,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
         listVw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int id, long l) {
-                openActivity(id);
+                openAct = new Intent(MainActivity.this, mClassess[id]);
+                startActivity(openAct);
             }
         });
-
     }
 
     @Override
@@ -71,69 +83,5 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void openActivity(int id) {
-        switch (id) {
-            case 0:
-                openAct = new Intent(MainActivity.this, JustJava.class);
-//                openAct.putExtra(SOMEZING, some_value);
-                startActivity(openAct);
-                break;
-            case 1:
-                openAct = new Intent(MainActivity.this, CourtCounter.class);
-//                openAct.putExtra(SOMEZING, some_value);
-                startActivity(openAct);
-                break;
-            case 2:
-                openAct = new Intent(MainActivity.this, Miwok.class);
-                startActivity(openAct);
-                break;
-            case 3:
-                openAct = new Intent(MainActivity.this, MusicPlayer.class);
-                startActivity(openAct);
-                break;
-            case 4:
-                openAct = new Intent(MainActivity.this, MiwokTabs.class);
-                startActivity(openAct);
-                break;
-            case 5:
-                openAct = new Intent(MainActivity.this, EarthquakeActivity.class);
-                startActivity(openAct);
-                break;
-            case 6:
-                openAct = new Intent(MainActivity.this, Soonami.class);
-                startActivity(openAct);
-                break;
-            case 7:
-                openAct = new Intent(MainActivity.this, DidYouFeelIt.class);
-                startActivity(openAct);
-                break;
-            case 8:
-                openAct = new Intent(MainActivity.this, CatalogActivity.class);
-                startActivity(openAct);
-                break;
-            case 9:
-                openAct = new Intent(MainActivity.this, SunMainActivity.class);
-                startActivity(openAct);
-                break;
-            case 10:
-                openAct = new Intent(MainActivity.this, ToyMainActivity.class);
-                startActivity(openAct);
-                break;
-            case 11:
-                openAct = new Intent(MainActivity.this, RepoMainActivity.class);
-                startActivity(openAct);
-                break;
-            case 12:
-                openAct = new Intent(MainActivity.this, RecyclerMainActivity.class);
-                startActivity(openAct);
-                break;
-            case 13:
-                openAct = new Intent(MainActivity.this, NewActivityMain.class);
-                startActivity(openAct);
-                break;
-
-        }
     }
 }

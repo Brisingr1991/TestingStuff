@@ -206,8 +206,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".newActivity.NewActivityMain" />
         </activity>
-
-
+        <activity
+            android:name=".intents.MainIntentActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".sunshine.DetailActivity"
+            android:parentActivityName=".sunshine.SunMainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".sunshine.SunMainActivity" />
+        </activity>
+        <activity
+            android:name=".lifecycles.MainLifecycle"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

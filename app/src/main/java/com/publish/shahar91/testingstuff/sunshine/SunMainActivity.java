@@ -1,5 +1,7 @@
 package com.publish.shahar91.testingstuff.sunshine;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -75,6 +77,20 @@ public class SunMainActivity extends AppCompatActivity implements ForecastAdapte
                 mForecastAdapter.setWeatherData(null);
                 LoadWeatherData();
                 return true;
+            case R.id.action_map:
+                String address = "Antwerp";
+                Uri.Builder builder = new Uri.Builder();
+                builder.scheme("geo")
+                        .path("0,0")
+                        .query(address);
+                Uri addressUri = builder.build();
+
+                Intent showMap = new Intent(Intent.ACTION_VIEW, addressUri);
+                showMap.putExtra("uri", addressUri);
+                if (showMap.resolveActivity(getPackageManager()) != null) {
+                    startActivity(showMap);
+                }
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -87,7 +103,9 @@ public class SunMainActivity extends AppCompatActivity implements ForecastAdapte
 
     @Override
     public void onClick(String weatherForDay) {
-        Toast.makeText(this, weatherForDay, Toast.LENGTH_SHORT).show();
+        Intent detailIntent = new Intent(this, DetailActivity.class);
+        detailIntent.putExtra(Intent.EXTRA_TEXT, weatherForDay);
+        startActivity(detailIntent);
     }
 
     public class SunQueryTask extends AsyncTask<String, Void, String[]> {
